@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сюрприз для Кристины</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+    button {
+      font-size: 1.5em;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ff5e99;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: scale(1.05);
+    }
+    .message {
+      display: none;
+      font-size: 2em;
+      margin-top: 20px;
+      color: #fff;
+      font-weight: bold;
+    }
+    .heart {
+      position: absolute;
+      font-size: 2em;
+      animation: floatUp 2s ease-out forwards;
+      opacity: 0;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-200px); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <button onclick="showHearts()">ЖМИ</button>
+  <div class="message" id="message">Для самой лучшей ❤️</div>
+
+  <script>
+    function showHearts() {
+      const colors = ['#ff4b5c', '#ff85a1', '#ffc2d1', '#ff9aa2', '#ffccd5'];
+      for (let i = 0; i < 5; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * 90 + '%';
+        heart.style.top = '70%';
+        heart.textContent = '❤️';
+        heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+        heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 2000);
+      }
+      document.getElementById('message').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
